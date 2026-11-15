@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Contagem Regressiva - 06/12/2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- IMAGEM CENTRALIZADA E MESCLADA NO FUNDO -->
+  <div class="bg-image"></div>
+
+  <main class="card">
+    <div class="badge">✨ 06 DE DEZEMBRO DE 2026 ✨</div>
+    
+    <h1>Falta pouco!</h1>
+    <p class="subtitle">Contagem regressiva para o nosso grande dia</p>
+
+    <!-- CRONÔMETRO -->
+    <div id="countdown" class="countdown-grid">
+      <div class="time-box">
+        <span id="days" class="number">00</span>
+        <span class="label">Dias</span>
+      </div>
+
+      <div class="time-box">
+        <span id="hours" class="number">00</span>
+        <span class="label">Horas</span>
+      </div>
+
+      <div class="time-box">
+        <span id="minutes" class="number">00</span>
+        <span class="label">Minutos</span>
+      </div>
+
+      <div class="time-box">
+        <span id="seconds" class="number">00</span>
+        <span class="label">Segundos</span>
+      </div>
+    </div>
+
+    <!-- MENSAGEM QUANDO ZERAR -->
+    <div id="message" class="final-message" style="display: none;">
+      💖 CHEGOU O GRANDE DIA! 💖
+    </div>
+  </main>
+
+  <script>
+    const dataAlvo = new Date(2026, 11, 6, 0, 0, 0).getTime();
+
+    function atualizarContagem() {
+      const agora = new Date().getTime();
+      const diferenca = dataAlvo - agora;
+
+      if (diferenca <= 0) {
+        document.getElementById('countdown').style.display = 'none';
+        document.getElementById('message').style.display = 'block';
+        return;
+      }
+
+      const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+
+      document.getElementById('days').innerText = String(dias).padStart(2, '0');
+      document.getElementById('hours').innerText = String(horas).padStart(2, '0');
+      document.getElementById('minutes').innerText = String(minutos).padStart(2, '0');
+      document.getElementById('seconds').innerText = String(segundos).padStart(2, '0');
+    }
+
+    setInterval(atualizarContagem, 1000);
+    atualizarContagem();
+  </script>
+</body>
+</html>
